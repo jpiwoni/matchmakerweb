@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Author: Justina Piwoni
+    Project: MatchmakerWeb
+    Credits: Eric Pogue
+
+    All rights reserved.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmaker for the Web</title>
+</head>
+
+<body style="background-color:powderblue;">
+    <h1 style="text-align:center; font-family:courier;">Matchmaker for the Web</h1>
+    <h2 style="text-align:center; font-family:courier;">Justina's Matchmaker</h2>
+    <h2 style="text-align:center; font-family:courier;">Are you worthy of being called mine?</h2>
+    <h2 style="text-align:center; font-family:courier;">WinningMyLoveSoft, Inc.</h2>
+    <hr style="height:2px;border-width:0;color:white;background-color:white">
+    <p style="font-family:courier;">This program figure out whether you are worthy of having someone like me.</p>
+    <p style="font-family:courier;">You will answer 5 questions.</p>
+    <p style="font-family:courier;">To each question choose whether or not you strongly agree, agree, neither 
+        agree nor disagree, disagree, or strongly disagree.</p>
+    <p style="font-family:courier;">It is either you get me or you do not.</p>
+    <p style="font-family:courier;">If you do not, then it is clearly for the best.</p>
+    <p style="font-family:courier;">Do not come running back asking for my love... it will not be reciprocated.</p>
+    <hr style="height:2px;border-width:0;color:white;background-color:white">
+   
+    <!-- Reference for HTML "option" tabs/fields: https://www.w3schools.com/tags/tag_option.asp -->
+    
+    <label style="font-family:courier;">Kevin Parker (Tame Impala) is the best and most talented music artist out there.</label>
+    <select id="q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label style="font-family:courier;">All Jeep cars are ugly except the Jeep Wrangler.</label>
+    <select id="q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label style="font-family:courier;">Everyone should be vegan.</label>
+    <select id="q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label style="font-family:courier;">Texas Roadhouse is the best restaurant.</label>
+    <select id="q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label style="font-family:courier;">Traveling is a necessity.</label>
+    <select id="q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree nor disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br /><br /><br />
+    <button onclick="calculateCompatibility()">Calculate Compatibility</button>
+    <p id="compatibility"></p>
+
+<script>
+console.log("Starting Matchmaker Lite...");
+
+function calculateCompatibility() {
+    console.log("calculateCompatibility()");
+
+    const DESIRED_RESPONSE = [
+        5, /* strongly agree */
+        4, /* agree */
+        3, /* neither agree or disagree */
+        1, /* strongly disagree */
+        5, /* strongly agree */
+    ]
+
+    const MAX_SCORE = 25;
+
+    // Get the current values of the dropdown controls
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+    // Optionally log the values associated with question 1 through 3 to the console.
+    console.log("Question 1 Answers:")
+    console.log(document.getElementById('q1').selectedOptions[0].text);
+    console.log(document.getElementById('q1').selectedOptions[0].value);
+    console.log(question1Response);
+
+    console.log("Question 2 Answers:");
+    console.log(document.getElementById('q2').selectedOptions[0].text);
+    console.log(document.getElementById('q2').selectedOptions[0].value);
+    console.log(question2Response);
+
+    console.log("Question 3 Answers:");
+    console.log(document.getElementById('q3').selectedOptions[0].text);
+    console.log(document.getElementById('q3').selectedOptions[0].value);
+    console.log(question3Response);
+
+    console.log("Question 4 Answers:");
+    console.log(document.getElementById('q4').selectedOptions[0].text);
+    console.log(document.getElementById('q4').selectedOptions[0].value);
+    console.log(question4Response);
+
+    console.log("Question 5 Answers:");
+    console.log(document.getElementById('q5').selectedOptions[0].text);
+    console.log(document.getElementById('q5').selectedOptions[0].value);
+    console.log(question5Response);
+
+    // Todo: Calculate compatibility scores.
+    let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+    console.log("c1="+question1Compatibility);
+    console.log("c2="+question2Compatibility);
+    console.log("c3="+question3Compatibility);
+    console.log("c4="+question4Compatibility);
+    console.log("c5="+question5Compatibility);
+
+    // Calculate total compatibility.
+    let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility;
+
+    // Convert totalCompatibility to a percentage.
+    totalCompatibility *= 100 / MAX_SCORE;
+    totalCompatibility = Math.round(totalCompatibility);
+    console.log("tc="+ totalCompatibility);
+
+    let response;
+    if (totalCompatibility >= 95) {
+        response = "So can I call you tonight?";
+    } else if (totalCompatibility >= 94) {
+        response = "Uh... Friends?";
+    } else {
+        response = "Ugh, As If!";
+    }
+
+    document.getElementById("compatibility").innerHTML = "Your compatibility is: " + totalCompatibility + "<br>" + "<br>" + response;
+}
+</script>
+
+</body>
+</html>
